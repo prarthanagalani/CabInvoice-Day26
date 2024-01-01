@@ -20,4 +20,13 @@ public class CabInvoice {
         }
         return totalFare;
     }
+
+    public Invoice generateInvoice(List<Ride> rides) {
+        double totalFare = calculateTotalFare(rides);
+        int totalRides = rides.size();
+        double averageFarePerRide = totalFare / totalRides;
+
+        return new Invoice(totalRides, totalFare, averageFarePerRide);
+    }
+
 }

@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
+
 public class CabInvoiceTest {
 
     CabInvoice cab = new CabInvoice();
@@ -36,6 +37,19 @@ public class CabInvoiceTest {
 
         double totalFare = cab.calculateTotalFare(rides);
         assertEquals(290.0, totalFare);
+
+    }
+
+    @Test
+    public void generateInvoiceTest() {
+        List<Ride> rides = Arrays.asList(
+                new Ride(15.0, 20.0),
+                new Ride(2.0, 5.0),
+                new Ride(8.0, 15.0));
+
+        assertEquals(290.0, cab.generateInvoice(rides).getTotalFare());
+        assertEquals(3, cab.generateInvoice(rides).getTotalRides());
+        assertEquals(96.66666666666667, cab.generateInvoice(rides).getAverageFarePerRide());
 
     }
 
