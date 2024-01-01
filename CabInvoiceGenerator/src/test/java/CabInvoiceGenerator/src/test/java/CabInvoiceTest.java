@@ -62,4 +62,15 @@ public class CabInvoiceTest {
         assertEquals(232.5, invoice.getAverageFarePerRide());
     }
 
+    @Test
+    public void IdnotPresent() {
+        String id = "user3";
+
+        Throwable exception = assertThrows(NullPointerException.class, () -> {
+            cab.generateInvoiceById(id);
+        });
+
+        assertEquals("Invalid id.", exception.getMessage());
+    }
+
 }
