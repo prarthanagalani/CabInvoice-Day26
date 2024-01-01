@@ -9,6 +9,10 @@ public class CabInvoice {
     private static final double COST_PER_KM = 10.0;
     private static final double COST_PER_MINUTE = 1.0;
     private static final double MINIMUM_FARE = 5.0;
+    private static final double COST_PER_KM_PREMIUM = 15.0;
+    private static final double COST_PER_MINUTE_PREMIUM = 2.0;
+    private static final double MINIMUM_FARE_PREMIUM = 20.0;
+
     private HashMap<String, List<Ride>> map = new HashMap<>();
 
     public CabInvoice() {
@@ -54,6 +58,12 @@ public class CabInvoice {
         } else {
             throw new NullPointerException("Invalid id.");
         }
+    }
+
+    public double calculateFarePremium(double distance, double time) {
+        double fare = distance * COST_PER_KM_PREMIUM + time * COST_PER_MINUTE_PREMIUM;
+        return Math.max(fare, MINIMUM_FARE_PREMIUM);
+
     }
 
 }

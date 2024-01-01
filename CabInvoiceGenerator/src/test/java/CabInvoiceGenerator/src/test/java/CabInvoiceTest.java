@@ -62,4 +62,11 @@ public class CabInvoiceTest {
         assertEquals(232.5, invoice.getAverageFarePerRide());
     }
 
+    @Test
+    public void calculateFarePremiumTest()
+    {
+        double fare = cab.calculateFarePremium(12, 10);
+        assertEquals(200.0, fare);
+    }
+
 }
