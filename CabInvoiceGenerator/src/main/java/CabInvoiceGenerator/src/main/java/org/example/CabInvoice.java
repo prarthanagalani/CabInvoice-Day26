@@ -1,5 +1,7 @@
 package CabInvoiceGenerator.src.main.java.org.example;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class CabInvoice {
@@ -7,6 +9,21 @@ public class CabInvoice {
     private static final double COST_PER_KM = 10.0;
     private static final double COST_PER_MINUTE = 1.0;
     private static final double MINIMUM_FARE = 5.0;
+    private HashMap<String, List<Ride>> map = new HashMap<>();
+
+    public CabInvoice() {
+        List<Ride> rides1 = Arrays.asList(
+                new Ride(15.0, 20.0),
+                new Ride(2.0, 5.0),
+                new Ride(8.0, 15.0));
+        map.put("user1", rides1);
+
+        List<Ride> rides2 = Arrays.asList(
+                new Ride(20.0, 10.0),
+                new Ride(25.0, 5.0));
+
+        map.put("user2", rides2);
+    }
 
     public double calculateFare(double distance, double time) {
         double fare = distance * COST_PER_KM + time * COST_PER_MINUTE;
@@ -27,6 +44,16 @@ public class CabInvoice {
         double averageFarePerRide = totalFare / totalRides;
 
         return new Invoice(totalRides, totalFare, averageFarePerRide);
+    }
+
+    public Invoice generateInvoiceById(String id) {
+        if (map.containsKey(id)) {
+            List<Ride> rides = map.get(id);
+            return generateInvoice(rides);
+
+        } else {
+            throw new NullPointerException("Invalid id.");
+        }
     }
 
 }

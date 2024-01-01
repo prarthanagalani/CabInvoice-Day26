@@ -3,12 +3,12 @@ package CabInvoiceGenerator.src.test.java;
 import static org.junit.jupiter.api.Assertions.*;
 
 import CabInvoiceGenerator.src.main.java.org.example.CabInvoice;
+import CabInvoiceGenerator.src.main.java.org.example.Invoice;
 import CabInvoiceGenerator.src.main.java.org.example.Ride;
 
 import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
-
 
 public class CabInvoiceTest {
 
@@ -51,6 +51,15 @@ public class CabInvoiceTest {
         assertEquals(3, cab.generateInvoice(rides).getTotalRides());
         assertEquals(96.66666666666667, cab.generateInvoice(rides).getAverageFarePerRide());
 
+    }
+
+    @Test
+    public void generateInvoiceByIdTest() {
+        String id = "user2";
+        Invoice invoice = cab.generateInvoiceById(id);
+        assertEquals(465.0, invoice.getTotalFare());
+        assertEquals(2, invoice.getTotalRides());
+        assertEquals(232.5, invoice.getAverageFarePerRide());
     }
 
 }
