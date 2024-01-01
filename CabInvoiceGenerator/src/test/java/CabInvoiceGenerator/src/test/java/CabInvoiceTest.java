@@ -63,10 +63,21 @@ public class CabInvoiceTest {
     }
 
     @Test
+<<<<<<< HEAD
     public void calculateFarePremiumTest()
     {
         double fare = cab.calculateFarePremium(12, 10);
         assertEquals(200.0, fare);
+=======
+    public void IdnotPresent() {
+        String id = "user3";
+
+        Throwable exception = assertThrows(NullPointerException.class, () -> {
+            cab.generateInvoiceById(id);
+        });
+
+        assertEquals("Invalid id.", exception.getMessage());
+>>>>>>> Uc4_InvoiceService
     }
 
 }
